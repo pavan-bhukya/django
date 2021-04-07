@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>     </title>
+<style> 
+canvas {
+  display:block;
+  margin:30px auto 0;
+  background:#fff;
+}
+input{
+
+display:block;
+  margin:30px auto 0;
+  background:#fff;
+
+}
+</style>
+</head>
+<body>
+<canvas id="myCanvas" width="1000" height="500" style="border:1px solid #FF0000">
+
+</canvas>
+<input type="button" value="Clear" onclick="reset();"></input>
+<script>
+
+var c=document.getElementById('myCanvas');
+var wi=c.width;var he=c.height;
+var lastx=Number.MAX_VALUE,lasty=Number.MAX_VALUE,lastw=0,lasth=0,x=0,y=0;
+if(c.getContext)
+{
+var ctc=c.getContext('2d');
+ var rectangle={};
+ var drag=false;
+
+
+//ctc.fillRect(25,25,100,100);
+var a=0;
+
+
+function init() {
+  c.addEventListener('mousedown', mouseDown, false);
+  c.addEventListener('mouseup', mouseUp, false);
+  c.addEventListener('mousemove', mouseMove, false);
+}
+
+function mouseDown(e) {
+  rectangle.startX = e.pageX - this.offsetLeft;
+  rectangle.startY = e.pageY - this.offsetTop;
+  x=rectangle.startX;
+  y=rectangle.startY;lastw=0;lasth=0;
+  drag = true; e.preventDefault();
+}
+
+function mouseUp() {
+  drag = false;
+  lastx=Number.MAX_VALUE;lasty=Number.MAX_VALUE;lastw=0;lasth=0;x=0; y=0;
+}
+
+function mouseMove(e) {
+
+  if (drag) {
+  
+    rectangle.w = (e.pageX - this.offsetLeft) - x;
+    rectangle.h = (e.pageY - this.offsetTop) - y;
+	
+    ctc.clearRect(0,0,c.width,c.height)
+	//ctc.clearRect(lastx-5,lasty-5,lastw+6,lasth+6);
+	
+	//
+	/*
+	ctc.rect(x-5,y-5,lastw+6,lasth+6);
+  
+  ctc.lineWidth = 5;
+ctc.strokeStyle = 'black';
+ctc.closePath();
+ctc.stroke();
+	*/
+	//
+	x=Math.min(e.pageX - this.offsetLeft,rectangle.startX);y=Math.min(e.pageY - this.offsetTop,rectangle.startY);
+	if(x<rectangle.startX) rectangle.w=rectangle.startX-x;
+	if(y<rectangle.startY) rectangle.h=rectangle.startY-y;
+    draw();
+	lastx=x;lasty=y; 
+	lastw=rectangle.w;lasth=rectangle.h;
+	
+  }
+}
+
+
+function draw() {
+
+/*
+a=Math.floor(Math.random()*256);
+var b=Math.floor(Math.random()*256);
+var c=Math.floor(Math.random()*256);
+*/
+ctc.beginPath();
+
+  ctc.rect(x, y, rectangle.w, rectangle.h);
+  
+  ctc.lineWidth = 5;
+ctc.strokeStyle = 'red';
+
+ctc.stroke();ctc.closePath();
+  //ctc.fillStyle= "rgb("+a+","+a+1 +","+a+2+ ")";
+  a+=10;
+}
+
+init();
+}
+else
+{
+alert("Your browser is not supporting!!!!!!!!!"); 
+}
+
+function reset()
+{
+var can=document.getElementById('myCanvas');
+
+var ctx=c.getContext('2d');
+
+ctx.clearRect(0,0,can.width,can.height);
+}
+
+</script>
+
+
+</body>
+</html>

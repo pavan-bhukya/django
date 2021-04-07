@@ -1,0 +1,67 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "2da00959-aa55-401c-9d3e-8df464adceec": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 30,
+                    "y": 70
+                },
+                "z": 0,
+                "isassociatedwith": [
+                    "ed60567b-dc3f-4a54-9a27-55642971182d"
+                ]
+            },
+            "ed60567b-dc3f-4a54-9a27-55642971182d": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 360,
+                    "y": 90
+                },
+                "z": 0
+            },
+            "3166e396-3ba4-4690-800d-5411e0427e0e": {
+                "source": {
+                    "id": "2da00959-aa55-401c-9d3e-8df464adceec"
+                },
+                "target": {
+                    "id": "ed60567b-dc3f-4a54-9a27-55642971182d"
+                },
+                "z": 1
+            }
+        }
+    },
+    "Resources": {
+        "EC2I3VY1S": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "SecurityGroupIds": [
+                    {
+                        "Ref": "EC2SG3ENMX"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "2da00959-aa55-401c-9d3e-8df464adceec"
+                }
+            }
+        },
+        "EC2SG3ENMX": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "ed60567b-dc3f-4a54-9a27-55642971182d"
+                }
+            }
+        }
+    }
+}
